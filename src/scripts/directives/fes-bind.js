@@ -18,7 +18,6 @@ honeydew.directive('fesBind', ['FesInterface', function(FesInterface)
                         if(angular.isDefined(scope[dependencies[i]]))
                         {
                             scope[dependencies[i]] = FesInterface.getVariable(dependencies[i]).getValue(1);
-                            console.log("dependencie " + dependencies[i] + " set!");
                         }
                     }
                 }
