@@ -7,14 +7,14 @@
     <script src="scripts/lib/interface.js" type="text/javascript"></script>
     <script src="scripts/honeydew.js" type="text/javascript"></script>
     <script src="scripts/directives/fes-bind.js" type="text/javascript"></script>
-    <script src="scripts/directives/fes-element.js" type="text/javascript"></script>
+    <script src="scripts/directives/fes-bind-repeat.js" type="text/javascript"></script>
 </head>
 <body ng-app="honeydew">
 
-    <input ng-model="BALANCE" fes-bind/>
-    <input ng-model="INCOME" fes-bind/>
-    <input ng-model="TOTAL" fes-bind/>
-    <input ng-model="CHILD1" fes-bind/>
-    <input ng-model="CHILD2" fes-bind/>
+    <input fes-bind="CREDIT"/>
+
+    <div ng-repeat="obj in BALANCE" fes-bind-repeat >
+        <input fes-bind="obj"/>
+    </div>
 </body>
 </html>
