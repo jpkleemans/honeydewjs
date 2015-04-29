@@ -12,9 +12,12 @@
 <body ng-app="honeydew">
 
     <input fes-bind="CREDIT"/>
-
-    <div ng-repeat="obj in BALANCE" fes-bind-repeat >
-        <input fes-bind="obj"/>
+    <br />
+    <br />
+    <br />
+    <div ng-repeat="child in BALANCE" fes-bind-repeat >
+        <input fes-bind="child"/>
+        {{child}}
     </div>
 </body>
 </html>

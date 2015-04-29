@@ -56,6 +56,7 @@ function FESInterface()
     {
         return function(column, value)
         {
+            console.log(variable.id + ": " + value);
             variable.values[column] = value;
             var changedVariables = [];
             for (changedVarName in variables)
