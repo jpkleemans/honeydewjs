@@ -5,11 +5,11 @@ honeydew.directive('fesBindRepeat', ['FesInterface', '$compile', function(FesInt
         priority: 1002,
         compile: function(element, attrs ) {
             var repeatOn = attrs.ngRepeat;
-            var splittedRepeat = attrs.ngRepeat.split(' ');
-            var variable = splittedRepeat[2];
+            var splittedRepeat = attrs.ngRepeat.split(' in ');
+            var variable = splittedRepeat[1];
 
             var children = FesInterface.getLayout(variable, 'WITHCHILDS').children;
-            attrs.ngRepeat = splittedRepeat[0] + " " + splittedRepeat[1] + " " + JSON.stringify(children);
+            attrs.ngRepeat = splittedRepeat[0] + " in " + JSON.stringify(children);
             return {
                 post: function (scope, element, attrs) {
 
