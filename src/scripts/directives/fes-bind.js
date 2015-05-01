@@ -22,7 +22,7 @@ honeydew.directive('fesBind', ['FesInterface', '$compile', function(FesInterface
                     var length = dependencies.length;
                     for (var i = 0; i < length; i++) {
                         if (angular.isDefined(scope.$root[dependencies[i]])) {
-                            //scope.$root[dependencies[i]] = FesInterface.getVariable(dependencies[i]).getValue(1);
+                            scope.$root[dependencies[i]] = FesInterface.getVariable(dependencies[i]).getValue(1);
                         }
                     }
                 }
