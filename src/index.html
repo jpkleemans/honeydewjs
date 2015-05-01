@@ -20,11 +20,11 @@
     <br />
 
     <ul>
-        <li ng-repeat="data in ROOT" fes-bind-repeat-recursive="haha.html">
+        <li ng-repeat="data in ROOT" fes-bind-repeat-recursive="haha">
                 {{data.name}}:
                 <input fes-bind="{{data.name}}"/>
                 <ul>
-                    <li ng-repeat="data in data.children" ng-include="'haha.html'"></li>
+                    <li ng-repeat="data in data.children" ng-include="'haha'"></li>
                 </ul>
         </li>
     </ul>

@@ -5,6 +5,7 @@ honeydew.directive('fesBindRepeatRecursive', ['FesInterface', '$compile', '$temp
         priority: 1002,
         compile: function(element, attrs)
         {
+            //HTML van de ng-repeat wordt in een template gestopt met de meegegeven naam.
             $templateCache.put(attrs.fesBindRepeatRecursive, element[0].innerHTML);
             return {
                 post: function(scope, element, attrs)
@@ -41,6 +42,8 @@ honeydew.directive('fesBindRepeatRecursive', ['FesInterface', '$compile', '$temp
                             children : getChildrenRecursive(children[i])
                         });
                     }
+
+                    //$scope.ROOT wordt een object array waardoor er doorheen geloopt kan worden.
                     scope[variable] = result;
                 }
             }
