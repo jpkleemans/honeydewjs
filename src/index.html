@@ -11,24 +11,21 @@
 </head>
 <body ng-app="honeydew">
 
-    <script type="text/ng-template"  id="tree_item_renderer.html">
-        {{data.name}}:
-        <input fes-bind="{{data.name}}"/>
-        <ul>
-            <li ng-repeat="data in data.children" ng-include="'tree_item_renderer.html'"></li>
-        </ul>
-    </script>
 
-    <input fes-bind="CREDIT"/>
-    <input fes-bind="CHILD1"/>
 
+    Credit: <input fes-bind="CREDIT"/><br />
+    Child1: <input fes-bind="CHILD1"/><br />
 
     <br />
     <br />
 
     <ul>
-        <li ng-repeat="data in ROOT" ng-include="'tree_item_renderer.html'" fes-bind-repeat-recursive>
-
+        <li ng-repeat="data in ROOT" fes-bind-repeat-recursive="haha.html">
+                {{data.name}}:
+                <input fes-bind="{{data.name}}"/>
+                <ul>
+                    <li ng-repeat="data in data.children" ng-include="'haha.html'"></li>
+                </ul>
         </li>
     </ul>
     <br /><br />
