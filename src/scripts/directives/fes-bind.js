@@ -8,10 +8,10 @@ honeydew.directive('fesBind', ['FesInterface', '$compile', function(FesInterface
             var variable = attrs.fesBind;
             element.attr('ng-model', variable);
             element.removeAttr("fes-bind");
-            $compile(element)(scope);
+            $compile(element)(scope.$root);
             var fesvariable = FesInterface.getVariable(variable);
             scope.$root[variable] = fesvariable.getValue(1);
-            scope.$watch(variable, function (newvalue, oldvalue) {
+            scope.$root.$watch(variable, function (newvalue, oldvalue) {
                 if (newvalue != oldvalue) {
                     var dependencies = fesvariable.setValue(1, newvalue);
                     var length = dependencies.length;
