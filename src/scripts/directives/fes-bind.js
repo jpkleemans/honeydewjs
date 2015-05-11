@@ -4,6 +4,28 @@ honeydew.directive('fesBind', [
     'VariableRepository',
     function ($compile, Columns, Variables) {
         /**
+         * Construct the DOM
+         *
+         * @param scope
+         * @param element
+         * @param attrs
+         */
+        var link = function (scope, element, attrs) {
+            var variable = attrs.fesBind;
+
+            if (typeof scope.$root[variable] !== 'undefined') {
+                initVariable(variable, scope.$root);
+            }
+
+            setAttributes(scope.$root[variable], element);
+
+            element.removeAttr('fes-bind');
+
+            // compile element to activate bindings
+            $compile(element)(scope.$root);
+        };
+
+        /**
          * Initialize variable
          *
          * @param name
@@ -44,28 +66,6 @@ honeydew.directive('fesBind', [
 
             // Additional attribute to sync the value with ng-model
             element.attr('ng-model', variable.key + '.value');
-        };
-
-        /**
-         * Modify the DOM
-         *
-         * @param scope
-         * @param element
-         * @param attrs
-         */
-        var link = function (scope, element, attrs) {
-            var variable = attrs.fesBind;
-
-            if (typeof scope.$root[variable] !== 'undefined') {
-                initVariable(variable, scope.$root);
-            }
-
-            setAttributes(scope.$root[variable], element);
-
-            element.removeAttr('fes-bind');
-
-            // compile element to activate bindings
-            $compile(element)(scope.$root);
         };
 
         return {
