@@ -35,22 +35,25 @@ variable3.children = [
 ];
 
 var kind1 = new Fes.Variable("kind1");
-kind1.setAttributes(column1, {value:10});
+kind1.setAttributes(column1, {value: 10});
 
 var kind2 = new Fes.Variable("kind2");
-kind2.setAttributes(column1, {value:120});
+kind2.setAttributes(column1, {value: 120});
 
 var kind3 = new Fes.Variable("kind3");
-kind3.setAttributes(column1, {value:112120});
+kind3.setAttributes(column1, {value: 112120});
 
 var kind4 = new Fes.Variable("kind4");
-kind4.setAttributes(column1, {value:1324230});
+kind4.setAttributes(column1, {value: 1324230});
 
 var kind5 = new Fes.Variable("kind5");
-kind5.setAttributes(column1, {value:107665});
+kind5.setAttributes(column1, {value: 107665});
 
 var kind6 = new Fes.Variable("kind6");
-kind6.setAttributes(column1, {value:100987654321});
+kind6.setAttributes(column1, {
+    value: 100987654321,
+    style: 'background-color:blue;'
+});
 
 var testdata = new Fes.Variable("TESTDATA");
 testdata.setAttributes(column1, {value: 45});
