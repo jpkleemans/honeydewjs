@@ -1,10 +1,8 @@
-honeydew.directive('fesBindRepeatRecursive', ['FesInterface', '$compile', '$templateCache', function(FesInterface, $compile, $templateCache)
-{
+honeydew.directive('fesBindRepeatRecursive', ['ColumnRepository', 'VariableRepository', '$compile', '$templateCache', function (ColumnRepo, VariableRepo, $compile, $templateCache) {
     return {
         restrict: 'A',
         priority: 1002,
-        compile: function(element, attrs)
-        {
+        compile: function (element, attrs) {
             //HTML van de ng-repeat wordt in een template gestopt met de meegegeven naam.
             $templateCache.put(attrs.fesBindRepeatRecursive, element[0].innerHTML);
             var repeatOn = attrs.ngRepeat;
@@ -12,17 +10,14 @@ honeydew.directive('fesBindRepeatRecursive', ['FesInterface', '$compile', '$temp
             var variable = splittedRepeat[1];
             var result = [];
 
-            function getChildrenRecursive(child)
-            {
-                var myChildren = FesInterface.getLayout(child, 'WITHCHILDS');
-                if(angular.isDefined(myChildren.children))
-                {
+            function getChildrenRecursive(child) {
+                var myChildren = child.getChildren();
+                if (myChildren.length > 0) {
                     var rs = [];
-                    for(var i=0; i<myChildren.children.length; i++)
-                    {
+                    for (var i = 0; i < myChildren.length; i++) {
                         rs.push({
-                            name : myChildren.children[i],
-                            children : getChildrenRecursive(myChildren.children[i])
+                            name: myChildren[i].key,
+                            children: getChildrenRecursive(myChildren[i])
                         })
                     }
                     return rs;
@@ -31,12 +26,11 @@ honeydew.directive('fesBindRepeatRecursive', ['FesInterface', '$compile', '$temp
                 }
             }
 
-            var children = FesInterface.getLayout(variable, 'WITHCHILDS').children;
-            for(var i=0; i<children.length; i++)
-            {
+            var children = VariableRepository.findByKey(variable).getChildren();
+            for (var i = 0; i < children.length; i++) {
                 result.push({
-                    name : children[i],
-                    children : getChildrenRecursive(children[i])
+                    name: children[i].key,
+                    children: getChildrenRecursive(children[i])
                 });
             }
             attrs.ngRepeat = splittedRepeat[0] + " in " + JSON.stringify(result);
