@@ -1,35 +1,76 @@
-honeydew.directive('fesBind', ['ColumnRepository', 'VariableRepository', '$compile', function (ColumnRepo, VariableRepo, $compile) {
+honeydew.directive('fesBind', [
+    '$compile',
+    'ColumnRepository',
+    'VariableRepository',
+    function ($compile, Columns, Variables) {
+        /**
+         * Initialize variable
+         *
+         * @param name
+         * @param scope
+         */
+        var initVariable = function (name, scope) {
+            var variable = Variables.findByKey(name);
+            var column = Columns.findByKey(1);
 
+            var initialAttrs = variable.getAttributes(column);
+            scope[variable.key] = initialAttrs;
 
-    return {
-        restrict: 'A',
+            // Listen for user changes
+            scope.$watch(variable.key, function (newAttrs) {
+                variable.setAttributes(column, newAttrs);
+            });
 
-        link: function (scope, element, attrs) {
+            // Listen for model changes
+            variable.observe(function (newAttrs) {
+                if (scope[variable.key] !== newAttrs) {
+                    scope[variable.key] = newAttrs;
+                }
+            });
+        };
+
+        /**
+         * Set html-attributes
+         *
+         * @param variable
+         * @param element
+         */
+        var setAttributes = function (variable, element) {
+            for (var attr in variable) {
+                if (variable.hasOwnProperty(attr)) {
+                    element.attr('ng-attr-' + attr, '{{' + variable.key + '.' + attr + '}}');
+                }
+            }
+
+            // Additional attribute to sync the value with ng-model
+            element.attr('ng-model', variable.key + '.value');
+        };
+
+        /**
+         * Modify the DOM
+         *
+         * @param scope
+         * @param element
+         * @param attrs
+         */
+        var link = function (scope, element, attrs) {
             var variable = attrs.fesBind;
 
-            //ng-model wordt toegevoegd zodat de value gesynct wordt over de gehele view.
-            element.attr('ng-model', variable);
-            element.removeAttr("fes-bind");
+            if (typeof scope.$root[variable] !== 'undefined') {
+                initVariable(variable, scope.$root);
+            }
 
-            //element wordt gecomiled op de rootscope. Hierdoor wordt het ng-model actief.
+            setAttributes(scope.$root[variable], element);
+
+            element.removeAttr('fes-bind');
+
+            // compile element to activate bindings
             $compile(element)(scope.$root);
+        };
 
-            console.log(variable);
-            var fesvariable = VariableRepo.findByKey(variable);
-            var column = ColumnRepo.findByKey(1);
-
-            scope.$root[variable] = fesvariable.getAttributes(column).value;
-            scope.$root.$watch(variable, function (newvalue, oldvalue) {
-                if (newvalue != oldvalue) {
-                    var dependencies = fesvariable.setAttributes(column, {value: newvalue});
-                    var length = dependencies.length;
-                    for (var i = 0; i < length; i++) {
-                        if (angular.isDefined(scope.$root[dependencies[i]])) {
-                            scope.$root[dependencies[i]] = VariableRepo.findByKey(dependencies[i]).getAttributes(column).value;
-                        }
-                    }
-                }
-            })
+        return {
+            restrict: 'A',
+            link: link
         }
     }
-}]);
+]);
