@@ -11,22 +11,21 @@
 </head>
 <body ng-app="honeydew">
 
-CREDIT: <input fes-bind="CREDIT"/><br/>
-BALANCE: <input fes-bind="BALANCE"/><br/>
+CREDIT: <input fes-bind="CREDIT"/><br>
+BALANCE: <input fes-bind="BALANCE"/><br>
 
-<br/>
-<br/>
+{{ BALANCE | json }}
 
-Recursive BALANCE variable:<br/>
-<ul>
-    <li ng-repeat="data in BALANCE" fes-bind-repeat-recursive="template">
-        {{data.name}}:
-        <input fes-bind="{{data.name}}"/>
-        <ul ng-if="data.name === henk">
-            <li ng-repeat="data in data.children" ng-include="template"></li>
-        </ul>
-    </li>
-</ul>
+<!--Recursive BALANCE variable:<br/>-->
+<!--<ul>-->
+<!--<li ng-repeat="data in BALANCE" fes-bind-repeat-recursive="template">-->
+<!--{{data.name}}:-->
+<!--<input fes-bind="{{data.name}}"/>-->
+<!--<ul ng-if="data.name === henk">-->
+<!--<li ng-repeat="data in data.children" ng-include="template"></li>-->
+<!--</ul>-->
+<!--</li>-->
+<!--</ul>-->
 
 </body>
 </html>

@@ -8,13 +8,21 @@ var ColumnRepository = new Fes.ColumnRepository();
 ColumnRepository.columns = [column1, column2, column3,];
 
 var variable1 = new Fes.Variable("BALANCE");
-variable1.setAttributes(column1, {value: 10});
+variable1.setAttributes(column1, {
+    value: 10,
+    type: 'number',
+    style: 'background-color:red;'
+});
 variable1.children = [
     new Fes.Variable("CHILD1"),
     new Fes.Variable("CHILD2")
 ];
 var variable2 = new Fes.Variable("CREDIT");
-variable2.setAttributes(column1, {value: 20});
+variable2.setAttributes(column1, {
+    value: 20,
+    type: 'number',
+    style: 'background-color:green;'
+});
 variable2.children = [
     new Fes.Variable("CHILD3"),
     new Fes.Variable("CHILD4"),
