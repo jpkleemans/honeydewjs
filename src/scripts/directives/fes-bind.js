@@ -13,11 +13,11 @@ honeydew.directive('fesBind', [
         var link = function (scope, element, attrs) {
             var variable = attrs.fesBind;
 
-            if (typeof scope.$root[variable] !== 'undefined') {
+            if (typeof scope.$root[variable] === 'undefined') {
                 initVariable(variable, scope.$root);
             }
 
-            setAttributes(scope.$root[variable], element);
+            setAttributes(variable, scope.$root[variable], element);
 
             element.removeAttr('fes-bind');
 
@@ -55,17 +55,18 @@ honeydew.directive('fesBind', [
          * Set html-attributes
          *
          * @param variable
+         * @param attrs
          * @param element
          */
-        var setAttributes = function (variable, element) {
-            for (var attr in variable) {
-                if (variable.hasOwnProperty(attr)) {
-                    element.attr('ng-attr-' + attr, '{{' + variable.key + '.' + attr + '}}');
+        var setAttributes = function (variable, attrs, element) {
+            for (var attr in attrs) {
+                if (attrs.hasOwnProperty(attr)) {
+                    element.attr('ng-attr-' + attr, '{{' + variable + '.' + attr + '}}');
                 }
             }
 
             // Additional attribute to sync the value with ng-model
-            element.attr('ng-model', variable.key + '.value');
+            element.attr('ng-model', variable + '.value');
         };
 
         return {
