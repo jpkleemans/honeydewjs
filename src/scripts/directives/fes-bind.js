@@ -41,7 +41,7 @@ honeydew.directive('fesBind', [
             // Listen for user changes
             scope.$watch(variable.key, function (newAttrs) {
                 variable.setAttributes(column, newAttrs);
-            });
+            }, true);
 
             // Listen for model changes
             variable.observe(function (newAttrs) {
