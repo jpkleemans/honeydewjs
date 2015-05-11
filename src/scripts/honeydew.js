@@ -34,8 +34,41 @@ variable3.children = [
     new Fes.Variable("CHILD6")
 ];
 
+var kind1 = new Fes.Variable("kind1");
+kind1.setAttributes(column1, {value:10});
+
+var kind2 = new Fes.Variable("kind2");
+kind2.setAttributes(column1, {value:120});
+
+var kind3 = new Fes.Variable("kind3");
+kind3.setAttributes(column1, {value:112120});
+
+var kind4 = new Fes.Variable("kind4");
+kind4.setAttributes(column1, {value:1324230});
+
+var kind5 = new Fes.Variable("kind5");
+kind5.setAttributes(column1, {value:107665});
+
+var kind6 = new Fes.Variable("kind6");
+kind6.setAttributes(column1, {value:100987654321});
+
+var testdata = new Fes.Variable("TESTDATA");
+testdata.setAttributes(column1, {value: 45});
+testdata.children = [
+    kind1,
+    kind2,
+    kind3,
+    kind4,
+    kind5,
+    kind6
+];
+
+//var testdata2 = new FES.Variable("TESTDATA2");
+//testdata2.setAttributes(column1, {value: 300});
+//testdata2.children = [];
+
 var VariableRepository = new Fes.VariableRepository();
-VariableRepository.variables = [variable1, variable2, variable3];
+VariableRepository.variables = [variable1, variable2, variable3, testdata];
 
 honeydew.constant('ColumnRepository', ColumnRepository);
 honeydew.constant('VariableRepository', VariableRepository);
