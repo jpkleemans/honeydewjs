@@ -4,6 +4,7 @@ honeydew.directive('repeatRecursive', [
     '$templateCache',
     function (Variables, $compile, $templateCache) {
         /**
+         * Construct the DOM
          *
          * @param element
          * @param attrs
@@ -22,6 +23,7 @@ honeydew.directive('repeatRecursive', [
         };
 
         /**
+         * Get recursive array of children
          *
          * @param child
          * @returns {Array}
