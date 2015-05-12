@@ -1,8 +1,9 @@
 honeydew.directive('fesBind', [
     '$compile',
+    '$injector',
     'ColumnRepository',
     'VariableRepository',
-    function ($compile, Columns, Variables) {
+    function ($compile, $injector, Columns, Variables) {
         /**
          * Construct the DOM
          *
@@ -54,6 +55,16 @@ honeydew.directive('fesBind', [
         };
 
         /**
+         * Capitalize first letter of a string
+         *
+         * @param string
+         * @returns {string}
+         */
+        var capitalizeFirstLetter = function (string) {
+            return string.charAt(0).toUpperCase() + string.slice(1);
+        };
+
+        /**
          * Set html-attributes
          *
          * @param variable
@@ -63,7 +74,12 @@ honeydew.directive('fesBind', [
         var setAttributes = function (variable, attrs, element) {
             for (var attr in attrs) {
                 if (attrs.hasOwnProperty(attr)) {
-                    element.attr('ng-attr-' + attr, '{{' + variable + '.' + attr + '}}');
+                    var directive = 'ng' + capitalizeFirstLetter(attr) + 'Directive';
+                    if ($injector.has(directive)) {
+                        element.attr('ng-' + attr, '{{' + variable + '.' + attr + '}}');
+                    } else {
+                        element.attr('ng-attr-' + attr, '{{' + variable + '.' + attr + '}}');
+                    }
                 }
             }
 
