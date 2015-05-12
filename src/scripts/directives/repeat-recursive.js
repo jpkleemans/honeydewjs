@@ -1,8 +1,7 @@
 honeydew.directive('repeatRecursive', [
     'VariableRepository',
-    '$compile',
     '$templateCache',
-    function (Variables, $compile, $templateCache) {
+    function (Variables, $templateCache) {
         /**
          * Construct the DOM
          *
