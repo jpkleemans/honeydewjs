@@ -74,7 +74,12 @@ honeydew.directive('fesBind', [
         var setAttributes = function (variable, attrs, element) {
             for (var attr in attrs) {
                 if (attrs.hasOwnProperty(attr)) {
-                    element.attr(attr, '{{' + variable + '.' + attr + '}}');
+                    var directive = 'ng' + capitalizeFirstLetter(attr) + 'Directive';
+                    if ($injector.has(directive)) {
+                        element.attr('ng-' + attr, variable + '.' + attr);
+                    } else {
+                        element.attr('ng-attr-' + attr, '{{' + variable + '.' + attr + '}}');
+                    }
                 }
             }
 
