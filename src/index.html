@@ -18,9 +18,12 @@ BALANCE: <input fes-bind="BALANCE"/><br/>
 TESTDATA: <input fes-bind="TESTDATA"/><input type="checkbox" ng-model="checked"/><br/>
 
 <ul ng-if="checked">
-    <div ng-repeat="data in TESTDATA" fes-bind-repeat-recursive="template">
+    <li ng-repeat="data in TESTDATA" fes-bind-repeat-recursive="template">
         <input fes-bind="{{data.name}}"/>
-    </div>
+        <ul>
+            <li ng-repeat="data in data.children" ng-include="'template'"></li>
+        </ul>
+    </li>
 </ul>
 
 </body>

@@ -49,6 +49,21 @@ kind4.setAttributes(column1, {value: 1324230});
 var kind5 = new Fes.Variable("kind5");
 kind5.setAttributes(column1, {value: 107665});
 
+var henkie = new Fes.Variable("geert");
+henkie.setAttributes(column1, {value: "jan"});
+henkie.children = [
+    new Fes.Variable("sdsasdadsadasdds"),
+    new Fes.Variable("saddadasdassdas"),
+    new Fes.Variable("dadadasdssadasdasd354534534")
+];
+
+
+kind5.children = [
+    henkie,
+    new Fes.Variable("sadsasda23423"),
+    new Fes.Variable("sadsasdasdasdsda")
+];
+
 var kind6 = new Fes.Variable("kind6");
 kind6.setAttributes(column1, {
     value: 100987654321,
