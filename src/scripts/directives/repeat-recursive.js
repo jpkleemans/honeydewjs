@@ -45,7 +45,7 @@ honeydew.directive('repeatRecursive', [
 
         return {
             restrict: 'A',
-            priority: 1002,
+            priority: 1001,
             compile: compile
         }
     }]);
