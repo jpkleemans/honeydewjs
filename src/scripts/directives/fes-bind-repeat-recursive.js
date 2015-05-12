@@ -1,4 +1,4 @@
-honeydew.directive('fesBindRepeatRecursive', ['ColumnRepository', 'VariableRepository', '$compile', '$templateCache', function (ColumnRepo, VariableRepo, $compile, $templateCache) {
+honeydew.directive('fesBindRepeatRecursive', ['VariableRepository', '$compile', '$templateCache', function (Variables, $compile, $templateCache) {
     return {
         restrict: 'A',
         priority: 1002,
@@ -26,7 +26,7 @@ honeydew.directive('fesBindRepeatRecursive', ['ColumnRepository', 'VariableRepos
                 }
             }
 
-            var children = VariableRepository.findByKey(variable).getChildren();
+            var children = Variables.findByKey(variable).getChildren();
             for (var i = 0; i < children.length; i++) {
                 result.push({
                     name: children[i].key,

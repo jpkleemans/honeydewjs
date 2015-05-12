@@ -45,7 +45,7 @@ honeydew.directive('fesBind', [
 
             // Listen for model changes
             variable.observe(function (newAttrs) {
-                var newAttrs = variable.getAttributes(column); // Moet uiteindelijk meegegeven worden
+                var newAttrs = variable.getAttributes(column); // Moet uiteindelijk meegegeven worden als argument vd callback
 
                 if (scope[variable.key] !== newAttrs) {
                     scope[variable.key] = newAttrs;
