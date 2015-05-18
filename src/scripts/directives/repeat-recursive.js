@@ -33,11 +33,13 @@ honeydew.directive('repeatRecursive', [
             var i = 0;
             var length = children.length;
             while (i < length) {
+                var childs = children[i].getChildren();
                 result.push({
                     key: children[i].key,
-                    children: getChildrenRecursive(children[i].getChildren())
+                    children: getChildrenRecursive(childs),
+                    hasChildren: childs.length > 0
                 });
-                i++
+                i++;
             }
 
             return result;

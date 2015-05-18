@@ -23,7 +23,9 @@ BALANCE: <input fes-bind="DEBT"/><br/>
 <ul>
     <li ng-repeat="child in BALANCE" repeat-recursive="template">
         {{child.key}}: <input fes-bind="{{child.key}}">
-        <ul>
+        <input type="checkbox" ng-init="showChildren = false" ng-show="child.hasChildren" ng-model="showChildren">
+
+        <ul ng-if="showChildren">
             <li ng-repeat="child in child.children" ng-include="'template'"></li>
         </ul>
     </li>
