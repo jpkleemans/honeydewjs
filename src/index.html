@@ -11,19 +11,17 @@
     <script src="scripts/honeydew.js" type="text/javascript"></script>
     <script src="scripts/directives/fes-bind.js" type="text/javascript"></script>
     <script src="scripts/directives/repeat-recursive.js" type="text/javascript"></script>
-    <script src="scripts/controllers/CheckedController.js"></script>
-
 </head>
-<body ng-app="honeydew" ng-controller="CheckController">
+<body ng-app="honeydew">
 
-CREDIT: <input fes-bind="CREDIT"/><br/>
-BALANCE: <input fes-bind="BALANCE"/><br/>
-BALANCE: <input fes-bind="DEBT"/><br/>
+<!--CREDIT: <input fes-bind="SafeFomula"/><br/>-->
+<!--BALANCE: <input fes-bind="UNSafeFomula"/><br/>-->
+<!--BALANCE: <input fes-bind="sdeGoodwill"/><br/>-->
 
 <ul>
-    <li ng-repeat="child in BALANCE" repeat-recursive="template">
-        {{child.key}}: <input fes-bind="{{child.key}}">
+    <li ng-repeat="child in ROOT" repeat-recursive="template">
         <input type="checkbox" ng-init="showChildren = false" ng-show="child.hasChildren" ng-model="showChildren">
+        {{child.key}}: <input fes-bind="{{child.key}}">
 
         <ul ng-if="showChildren">
             <li ng-repeat="child in child.children" ng-include="'template'"></li>
@@ -31,8 +29,8 @@ BALANCE: <input fes-bind="DEBT"/><br/>
     </li>
 </ul>
 
-<input type="text" ng-model="DEBT.style.background">
-<input type="checkbox" ng-model="DEBT.disabled">
+<!--<input type="text" ng-model="sdeGoodwill.style.background">-->
+<!--<input type="checkbox" ng-model="sdeGoodwill.disabled">-->
 
 </body>
 </html>
