@@ -15,45 +15,51 @@
 </head>
 <body ng-app="honeydew">
 
-<!--CREDIT: <input fes-bind="SafeFomula"/><br/>-->
-<!--BALANCE: <input fes-bind="UNSafeFomula"/><br/>-->
-<!--BALANCE: <input fes-bind="sdeGoodwill"/><br/>-->
-
-<ul>
-    <li quick-ng-repeat="child in ROOT" repeat-recursive="template">
-        <div style="display:inline-block;width:300px;">
-            <input type="checkbox"
-                   ng-init="showChildren = false"
-                   ng-show="child.children.length > 0"
-                   ng-model="showChildren">
-            {{child.key}}
-        </div>
-        <input fes-bind="{{child.key}}">
-
-        <ul ng-if="showChildren">
-            <li quick-ng-repeat="child in child.children">
-                <div ng-include="'template'"></div>
-            </li>
-        </ul>
-    </li>
-</ul>
+SafeFomula: <input fes-bind="SafeFomula"/><br/>
+UNSafeFomula: <input fes-bind="UNSafeFomula"/><br/>
+sdeGoodwill: <input fes-bind="sdeGoodwill"/><br/>
+<br/>
+<input type="text" ng-model="SafeFomula.style.color"> {{SafeFomula.value}}
 
 <!--<ul>-->
-<!--<li ng-repeat="child in ROOT" repeat-recursive="template">-->
-<!--<button class="btn btn-xs btn-primary" ng-init="showChildren = false" ng-show="child.hasChildren" ng-click="showChildren = !showChildren">{{child.key}}</button>-->
+<!--<li quick-ng-repeat="child in ROOT" repeat-recursive="template">-->
+<!--<div style="display:inline-block;width:300px;">-->
+<!--<input type="checkbox"-->
+<!--ng-init="showChildren = false"-->
+<!--ng-show="child.children.length > 0"-->
+<!--ng-model="showChildren">-->
+<!--{{child.key}}-->
+<!--</div>-->
 <!--<input fes-bind="{{child.key}}">-->
 
 <!--<ul ng-if="showChildren">-->
-<!--<li ng-repeat="child in child.children" ng-include="'template'"></li>-->
+<!--<li quick-ng-repeat="child in child.children">-->
+<!--<div ng-include="'template'"></div>-->
+<!--</li>-->
 <!--</ul>-->
 <!--</li>-->
 <!--</ul>-->
 
-<br>
-<br>
+<!--CompanyValuation color: <input type="text" ng-model="CompanyValuation.style.color">-->
 
-CompanyValuation color: <input type="text" ng-model="CompanyValuation.style.color">
-<!--<input type="checkbox" ng-model="sdeGoodwill.disabled">-->
+<!--<div style="margin:10px;">-->
+<!--<div quick-ng-repeat="child in ROOT" repeat-recursive="template">-->
+<!--<div style="display:inline-block;width:300px;">-->
+<!--<input type="checkbox"-->
+<!--ng-init="showChildren = false"-->
+<!--ng-show="child.children.length > 0"-->
+<!--ng-model="showChildren">-->
+<!--{{child.key}}-->
+<!--</div>-->
+<!--<input fes-bind="{{child.key}}">-->
+
+<!--<div ng-if="showChildren">-->
+<!--<div quick-ng-repeat="child in child.children">-->
+<!--<div ng-include="'template'"></div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
 
 </body>
 </html>
