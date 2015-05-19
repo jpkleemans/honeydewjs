@@ -11,14 +11,14 @@ honeydew.directive('repeatRecursive', [
         var compile = function (element, attrs) {
             $templateCache.put(attrs.repeatRecursive, element[0].innerHTML);
 
-            var splittedRepeat = attrs.ngRepeat.split(' in ');
+            var splittedRepeat = attrs.quickNgRepeat.split(' in ');
             var variable = splittedRepeat[1];
 
             var children = Variables.findByKey(variable).getChildren();
 
             var result = getChildrenRecursive(children);
 
-            attrs.ngRepeat = splittedRepeat[0] + ' in ' + JSON.stringify(result);
+            attrs.quickNgRepeat = splittedRepeat[0] + ' in ' + JSON.stringify(result);
         };
 
         /**
