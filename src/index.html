@@ -20,8 +20,9 @@
 
 <ul>
     <li ng-repeat="child in ROOT" repeat-recursive="template">
-        <input type="checkbox" ng-init="showChildren = false" ng-show="child.hasChildren" ng-model="showChildren">
-        {{child.key}}: <input fes-bind="{{child.key}}">
+        <input value="{{child.key}}"><input fes-bind="{{child.key}}">
+        <input type="checkbox" ng-init="showChildren = false" ng-show="child.children.length > 0"
+               ng-model="showChildren">
 
         <ul ng-if="showChildren">
             <li ng-repeat="child in child.children" ng-include="'template'"></li>
