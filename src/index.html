@@ -4,30 +4,52 @@
     <meta charset="UTF-8">
     <title>Most performant web app</title>
 
-    <link rel="stylesheet" type="text/css" href="../bower_components/bootstrap/dist/css/bootstrap.min.css">
-
     <script src="../bower_components/angular/angular.js" type="text/javascript"></script>
-    <script src="scripts/lib/Fes.min.js" type="text/javascript"></script>
     <script src="scripts/honeydew.js" type="text/javascript"></script>
-    <script src="scripts/directives/fes-bind.js" type="text/javascript"></script>
-    <script src="scripts/directives/repeat-recursive.js" type="text/javascript"></script>
+    <script src="scripts/controllers/TestController.js"></script>
+    <script src="../bower_components/quick-ngrepeat/quick-ng-repeat.js"></script>
 </head>
-<body ng-app="honeydew">
+<body ng-app="honeydew" ng-controller="TestController">
 
 <!--CREDIT: <input fes-bind="SafeFomula"/><br/>-->
 <!--BALANCE: <input fes-bind="UNSafeFomula"/><br/>-->
 <!--BALANCE: <input fes-bind="sdeGoodwill"/><br/>-->
 
-<ul>
-    <li ng-repeat="child in ROOT" repeat-recursive="template">
-        <input type="checkbox" ng-init="showChildren = false" ng-show="child.children.length > 0" ng-model="showChildren">
-        {{child.key}}: <input fes-bind="{{child.key}}">
+<!--<ul>-->
+<!--<li ng-repeat="child in ROOT" repeat-recursive="template">-->
+<!--<input type="checkbox" ng-init="showChildren = false" ng-show="child.children.length > 0" ng-model="showChildren">-->
+<!--{{child.key}}: <input fes-bind="{{child.key}}">-->
 
-        <ul ng-if="showChildren">
-            <li ng-repeat="child in child.children" ng-include="'template'"></li>
-        </ul>
-    </li>
-</ul>
+<!--<ul ng-if="showChildren">-->
+<!--<li ng-repeat="child in child.children" ng-include="'template'"></li>-->
+<!--</ul>-->
+<!--</li>-->
+<!--</ul>-->
+
+<!--<script type="text/ng-template" id="template">-->
+<!--<div>-->
+<!--{{item.key}}<input type="checkbox" ng-model="checked">-->
+<!--</div>-->
+<!--<ul ng-if="checked">-->
+<!--<li ng-repeat="item in item.children" ng-include="'template'"></li>-->
+<!--</ul>-->
+<!--</script>-->
+
+<!--<ul>-->
+<!--<li ng-repeat="item in items">-->
+<!--{{item.key}}<input type="checkbox" ng-model="checked">-->
+<!--<ul ng-if="checked">-->
+<!--<li ng-repeat="item in item.children" ng-include="'template'"></li>-->
+<!--</ul>-->
+<!--</li>-->
+<!--</ul>-->
+
+
+<div quick-ng-repeat="variable in items">
+    <span quick-ng-repeat="col in variable">
+        <input value="{{col}}">
+    </span>
+</div>
 
 
 <!--<input type="text" ng-model="sdeGoodwill.style.background">-->
