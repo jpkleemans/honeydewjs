@@ -9,17 +9,18 @@
     <script src="../bower_components/angular/angular.js" type="text/javascript"></script>
     <script src="../bower_components/quick-ngrepeat/quick-ng-repeat.js"></script>
     <script src="scripts/lib/Fes.min.js" type="text/javascript"></script>
+
     <script src="scripts/honeydew.js" type="text/javascript"></script>
     <script src="scripts/directives/fes-bind.js" type="text/javascript"></script>
     <script src="scripts/directives/repeat-recursive.js" type="text/javascript"></script>
 </head>
 <body ng-app="honeydew">
 
-SafeFomula: <input fes-bind="SafeFomula"/><br/>
-UNSafeFomula: <input fes-bind="UNSafeFomula"/><br/>
-sdeGoodwill: <input fes-bind="sdeGoodwill"/><br/>
-<br/>
-<input type="text" ng-model="SafeFomula.style.color"> {{SafeFomula.value}}
+<!--SafeFomula: <input fes-bind="SafeFomula"/><br/>-->
+<!--UNSafeFomula: <input fes-bind="UNSafeFomula"/><br/>-->
+<!--sdeGoodwill: <input fes-bind="sdeGoodwill"/><br/>-->
+<!--<br/>-->
+<!--<input type="text" ng-model="SafeFomula.style.color"> {{SafeFomula.value}}-->
 
 <!--<ul>-->
 <!--<li quick-ng-repeat="child in ROOT" repeat-recursive="template">-->
@@ -42,24 +43,45 @@ sdeGoodwill: <input fes-bind="sdeGoodwill"/><br/>
 
 <!--CompanyValuation color: <input type="text" ng-model="CompanyValuation.style.color">-->
 
-<!--<div style="margin:10px;">-->
-<!--<div quick-ng-repeat="child in ROOT" repeat-recursive="template">-->
-<!--<div style="display:inline-block;width:300px;">-->
-<!--<input type="checkbox"-->
-<!--ng-init="showChildren = false"-->
-<!--ng-show="child.children.length > 0"-->
-<!--ng-model="showChildren">-->
-<!--{{child.key}}-->
-<!--</div>-->
-<!--<input fes-bind="{{child.key}}">-->
+<div style="margin:10px;">
+    <div quick-ng-repeat="child in Q_ROOT_VALUATION" repeat-recursive="template">
+        <div style="display:inline-block;width:300px;">
+            <input type="checkbox"
+                   ng-init="showChildren = false"
+                   ng-show="child.children.length > 0"
+                   ng-model="showChildren">
+            {{child.key}}
+        </div>
+        <input fes-bind="{{child.key}}">
 
-<!--<div ng-if="showChildren">-->
-<!--<div quick-ng-repeat="child in child.children">-->
-<!--<div ng-include="'template'"></div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
-<!--</div>-->
+        <div ng-if="showChildren">
+            <div quick-ng-repeat="child in child.children">
+                <div ng-include="'template'"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div style="margin:10px;">
+    <div quick-ng-repeat="child in ValuationResults" repeat-recursive="template2">
+        <div style="display:inline-block;width:300px;">
+            <input type="checkbox"
+                   ng-init="showChildren = false"
+                   ng-show="child.children.length > 0"
+                   ng-model="showChildren">
+            {{child.key}}
+        </div>
+        <input fes-bind="{{child.key}}" ng-style="{color:'black', 'border-color':'black'}">
+
+        <div ng-if="showChildren">
+            <div quick-ng-repeat="child in child.children">
+                <div ng-include="'template2'"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<input type="checkbox" ng-model="SafeFomula.disabled">
 
 </body>
 </html>
