@@ -26,31 +26,29 @@
 <!--</li>-->
 <!--</ul>-->
 
-<!--<script type="text/ng-template" id="template">-->
-<!--<div>-->
-<!--{{item.key}}<input type="checkbox" ng-model="checked">-->
+<script type="text/ng-template" id="template">
+    <div>
+        {{item.key}}<input type="checkbox" ng-model="checked">
+    </div>
+    <ul ng-if="checked">
+        <li ng-repeat="item in item.children" ng-include="'template'"></li>
+    </ul>
+</script>
+
+<ul>
+    <li ng-repeat="item in items">
+        {{item.key}}<input type="checkbox" ng-model="checked">
+        <ul ng-if="checked">
+            <li ng-repeat="item in item.children" ng-include="'template'"></li>
+        </ul>
+    </li>
+</ul>
+
+<!--<div quick-ng-repeat="variable in items">-->
+<!--<span quick-ng-repeat="col in variable">-->
+<!--<input value="{{col}}">-->
+<!--</span>-->
 <!--</div>-->
-<!--<ul ng-if="checked">-->
-<!--<li ng-repeat="item in item.children" ng-include="'template'"></li>-->
-<!--</ul>-->
-<!--</script>-->
-
-<!--<ul>-->
-<!--<li ng-repeat="item in items">-->
-<!--{{item.key}}<input type="checkbox" ng-model="checked">-->
-<!--<ul ng-if="checked">-->
-<!--<li ng-repeat="item in item.children" ng-include="'template'"></li>-->
-<!--</ul>-->
-<!--</li>-->
-<!--</ul>-->
-
-
-<div quick-ng-repeat="variable in items">
-    <span quick-ng-repeat="col in variable">
-        <input value="{{col}}">
-    </span>
-</div>
-
 
 <!--<input type="text" ng-model="sdeGoodwill.style.background">-->
 <!--<input type="checkbox" ng-model="sdeGoodwill.disabled">-->
